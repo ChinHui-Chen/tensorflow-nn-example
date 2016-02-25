@@ -5,7 +5,7 @@ from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 
 # Parameters
-learning_rate = 0.001
+learning_rate = 0.01
 training_round = 5
 
 # Network Parameters
@@ -33,8 +33,8 @@ layer_2 = tf.nn.relu( tf.add( tf.matmul( layer_1, w2 ), b2 ))      #Hidden layer
 pred    =             tf.add( tf.matmul( layer_2, w3 ), b3 )
 
 # Define loss and optimizer
-cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(pred, y)) # Softmax loss
-optimizer = tf.train.GradientDescentOptimizer(0.01).minimize(cost)
+cost      = tf.reduce_mean( tf.nn.softmax_cross_entropy_with_logits(pred, y) ) # Softmax loss
+optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
 
 # Initializing the variables
 init = tf.initialize_all_variables()
