@@ -28,9 +28,9 @@ b2 = tf.Variable( tf.random_normal([n_hidden_2]) )
 b3 = tf.Variable( tf.random_normal([n_classes])  )
 
 # Create model
-layer_1 = tf.nn.relu( tf.add( tf.matmul( x, w1 ) , b1 ))      #Hidden layer with RELU activation
-layer_2 = tf.nn.relu( tf.add( tf.matmul( layer_1, w2 ), b2 )) #Hidden layer with RELU activation
-pred = tf.matmul(layer_2, w3) + b3
+layer_1 = tf.nn.relu( tf.add( tf.matmul(      x,  w1 ), b1 ))      #Hidden layer with RELU activation
+layer_2 = tf.nn.relu( tf.add( tf.matmul( layer_1, w2 ), b2 ))      #Hidden layer with RELU activation
+pred    =             tf.add( tf.matmul( layer_2, w3 ), b3 )
 
 # Define loss and optimizer
 cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(pred, y)) # Softmax loss
